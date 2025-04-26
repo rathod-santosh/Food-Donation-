@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "nodemon app.js",
+    "build": "babel src -d dist"
+  },
   "engines": {
     "node": "v22.13.0"
   },
@@ -29,5 +34,10 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.27.0",
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9"
   }
 }

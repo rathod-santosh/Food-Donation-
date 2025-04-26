@@ -1,4 +1,4 @@
-const Notification = require("../models/notification");
+const Notification = require("../../models/notification");
 
 router.get("/notifications", async (req, res) => {
     try {

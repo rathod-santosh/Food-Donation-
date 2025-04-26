@@ -16,6 +16,14 @@ const Delivery = require("./models/delivery");
 const PendingDelivery = require('./models/PendingDelivery');  
 const AcceptedDelivery = require('./models/AcceptedDelivery');
 
+const ngoDonationController = require("./controllers/ngoDonation");
+const userController = require("./controllers/userController");
+
+
+const deliveryRoutes = require('./routes/delivery');
+const notificationRoutes = require('./routes/notifications');
+
+
 
 //new
 // const DeliveryNotification = require("./models/DeliveryNotification"); // ✅ Import the new model
@@ -32,12 +40,16 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Set EJS as the template engine
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/img", express.static(path.join(__dirname, "img")));
 app.use(express.static(path.join(__dirname, "views")));
+
+
 
 // Session setup
 app.use(session({
@@ -89,8 +101,6 @@ const transporter = nodemailer.createTransport({
 
 
 
-const ngoDonationController = require("./controllers/ngoDonation");
-const userController = require("./controllers/userController");
 
 // NGO Routes
 app.get("/ngo/donations", ngoDonationController.getPendingDonations);
@@ -216,8 +226,6 @@ app.post("/donate", async (req, res) => {
 
 
 
-const deliveryRoutes = require('./routes/delivery');
-const notificationRoutes = require('./routes/notifications');
 
 
 // delivery related 
